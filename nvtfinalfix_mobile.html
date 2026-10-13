@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101a16">
+  <meta name="description" content="Noctaventure — Born to Climb Beyond Limits. A trainee group built for adventure and exploration.">
+  <title>Noctaventure — Born to Climb Beyond Limits</title>
+  <style>
+    /* =====================================================
+       NOCTAVENTURE WEBSITE
+       File tunggal agar mudah diedit melalui aplikasi TrebEdit.
+       Ubah warna utama pada bagian :root di bawah ini.
+       ===================================================== */
+    :root {
+      --bg: #101814;
+      --bg-soft: #17231c;
+      --panel: rgba(23, 35, 28, .82);
+      --green: #a6c78b;
+      --green-bright: #d1e6b7;
+      --cream: #f1efe4;
+      --muted: #b2b9ad;
+      --line: rgba(209, 230, 183, .2);
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: 'Trebuchet MS', Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 82px; }
+    body { margin: 0; color: var(--cream); background: var(--bg); font-family: var(--sans); line-height: 1.65; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .site-nav { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 15px clamp(18px, 5vw, 70px); background: rgba(13, 21, 17, .88); border-bottom: 1px solid var(--line); backdrop-filter: blur(12px); }
+    .brand-mini { font-size: .82rem; letter-spacing: .2em; font-weight: 800; color: var(--green-bright); white-space: nowrap; }
+    .nav-links { display: flex; gap: clamp(12px, 2.4vw, 30px); align-items: center; }
+    .nav-links a { color: #d4d9cf; font-size: .76rem; letter-spacing: .09em; text-transform: uppercase; transition: color .2s; }
+    .nav-links a:hover { color: var(--green-bright); }
+    .hero { min-height: 100svh; display: grid; place-items: center; position: relative; isolation: isolate; overflow: hidden; padding: 120px 24px 70px; text-align: center; background: linear-gradient(180deg, rgba(8,15,11,.38), rgba(8,15,11,.8) 72%, var(--bg)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2200&q=85') center/cover; }
+    .hero::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse at center, rgba(18,35,24,.08), rgba(7,13,10,.58) 75%); }
+    .hero-content { max-width: 1000px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 12px; color: var(--green-bright); font-size: .72rem; text-transform: uppercase; letter-spacing: .28em; }
+    .eyebrow::before, .eyebrow::after { content: ''; display: block; width: 28px; height: 1px; background: var(--green); }
+    h1 { margin: 24px 0 4px; font-size: clamp(2.8rem, 9.4vw, 7.4rem); line-height: .98; letter-spacing: .055em; font-weight: 800; text-shadow: 0 5px 28px #0008; }
+    .hero-tagline { margin: 22px 0 34px; color: var(--green-bright); font-family: var(--serif); font-size: clamp(1rem, 2.5vw, 1.45rem); font-style: italic; letter-spacing: .08em; }
+    .hero-note { max-width: 520px; margin: 0 auto 34px; color: #d6dcd2; font-size: .92rem; }
+    .hero-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-width: 130px; padding: 12px 19px; border: 1px solid rgba(209,230,183,.62); color: var(--cream); background: rgba(13,24,17,.45); text-transform: uppercase; letter-spacing: .1em; font-size: .72rem; transition: .25s ease; cursor: pointer; }
+    .btn:hover, .btn.active { color: #142016; background: var(--green-bright); border-color: var(--green-bright); transform: translateY(-2px); }
+    .scroll-cue { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); color: #d0d8ca; font-size: .65rem; letter-spacing: .22em; text-transform: uppercase; }
+    .scroll-cue span { display: block; margin: 6px auto 0; width: 1px; height: 28px; background: var(--green); }
+    section.content-section { padding: 100px clamp(20px, 7vw, 100px); }
+    .section-heading { margin-bottom: 44px; }
+    .section-heading .eyebrow { margin-bottom: 10px; }
+    h2 { margin: 0; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.05; letter-spacing: .035em; }
+    .section-subtitle { color: var(--green); margin: 10px 0 0; font-family: var(--serif); font-style: italic; }
+    .about-layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr); gap: clamp(28px, 6vw, 76px); align-items: start; }
+    .about-copy { color: #d2d8cf; font-size: 1rem; }
+    .about-copy strong { color: var(--green-bright); }
+    .info-panel { border: 1px solid var(--line); background: linear-gradient(145deg, rgba(39,57,43,.68), rgba(15,24,18,.8)); padding: clamp(22px, 4vw, 36px); }
+    .panel-title { margin: 0 0 20px; font-size: .78rem; letter-spacing: .17em; color: var(--green-bright); }
+    .profile-list { list-style: none; padding: 0; margin: 0; }
+    .profile-list li { padding: 15px 0; border-top: 1px solid var(--line); }
+    .profile-list b { display: block; color: var(--cream); font-size: .9rem; }
+    .profile-list span { display: block; color: var(--muted); font-size: .86rem; margin-top: 3px; }
+    .naming-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 28px; }
+    .naming-card { padding: 20px 17px; border: 1px solid var(--line); background: rgba(25,39,30,.58); }
+    .naming-card h3 { margin: 0 0 6px; color: var(--green-bright); font-size: .92rem; }
+    .naming-card p { margin: 0; color: var(--muted); font-size: .82rem; }
+    #team { background: linear-gradient(180deg, #121d16, #0f1713); }
+    .team-switch { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+    .team-switch .btn { min-width: 175px; }
+    .team-intro { color: var(--muted); margin: 0 0 24px; font-size: .9rem; }
+    .team-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .person-card { min-height: 210px; padding: 24px; position: relative; overflow: hidden; border: 1px solid var(--line); background: linear-gradient(140deg, rgba(39,57,43,.76), rgba(17,27,20,.92)); transition: transform .25s, border-color .25s; }
+    .person-photo { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center; display: block; margin: 0 0 16px; border: 1px solid var(--line); border-radius: 8px; background: #17231c; }
+    .person-photo[hidden] { display: none; }
+    .person-card:hover { transform: translateY(-5px); border-color: rgba(209,230,183,.6); }
+    .person-card::after { content: 'N'; position: absolute; right: -5px; bottom: -42px; font-family: var(--serif); font-size: 9rem; color: rgba(209,230,183,.045); pointer-events: none; }
+    .person-number { color: var(--green); font-size: .7rem; letter-spacing: .15em; }
+    .person-role { margin: 24px 0 5px; color: var(--green-bright); font-size: .7rem; text-transform: uppercase; letter-spacing: .15em; }
+    .person-name { margin: 0; font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.65rem); font-weight: 400; }
+    .team-count { margin-left: auto; color: var(--muted); font-size: .8rem; align-self: center; }
+    #pages { background: #17231b; }
+    .link-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .link-card { display: flex; min-height: 185px; flex-direction: column; justify-content: space-between; padding: 24px; border: 1px solid var(--line); background: rgba(10,19,13,.42); transition: .25s; }
+    .link-card:hover { background: rgba(53,75,54,.58); transform: translateY(-4px); border-color: var(--green); }
+    .link-icon { display: grid; place-items: center; width: 47px; height: 47px; border: 1px solid rgba(209,230,183,.45); color: var(--green-bright); font-size: 1.25rem; }
+    .link-card h3 { margin: 20px 0 3px; font-size: .95rem; font-weight: 600; }
+    .link-card p { margin: 0; color: var(--muted); font-size: .75rem; }
+    .arrow { color: var(--green-bright); font-size: 1.2rem; align-self: flex-end; }
+    #contact { background: linear-gradient(180deg, #101814, #17251b); }
+    .contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 820px; }
+    .contact-card { display: flex; align-items: center; gap: 18px; padding: 24px; border: 1px solid var(--line); background: var(--panel); transition: .25s; }
+    .contact-card:hover { border-color: var(--green); transform: translateY(-3px); }
+    .contact-card .link-icon { flex: 0 0 47px; }
+    .contact-card h3 { margin: 0; font-size: 1rem; }
+    .contact-card p { margin: 3px 0 0; color: var(--muted); font-size: .8rem; }
+    footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding: 24px clamp(20px, 7vw, 100px); border-top: 1px solid var(--line); color: var(--muted); background: #0b120e; font-size: .72rem; letter-spacing: .035em; }
+    footer .footer-brand { color: var(--green-bright); letter-spacing: .12em; }
+    .back-top { color: var(--green-bright); }
+    @media (max-width: 850px) { .about-layout { grid-template-columns: 1fr; } .naming-grid { grid-template-columns: repeat(2, 1fr); } .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .link-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 620px) {
+      html { scroll-padding-top: 108px; }
+      body { overflow-x: hidden; }
+      .site-nav { padding: 10px 12px; flex-wrap: wrap; justify-content: center; gap: 7px 12px; }
+      .brand-mini { font-size: .68rem; letter-spacing: .12em; }
+      .nav-links { width: 100%; justify-content: center; flex-wrap: wrap; gap: 8px 14px; }
+      .nav-links a { font-size: .62rem; letter-spacing: .03em; }
+      .hero { min-height: 92svh; padding: 112px 16px 68px; }
+      h1 { font-size: clamp(1.8rem, 8vw, 3.2rem); letter-spacing: .02em; overflow-wrap: anywhere; }
+      .eyebrow { font-size: .62rem; letter-spacing: .16em; gap: 8px; }
+      .eyebrow::before, .eyebrow::after { width: 18px; }
+      .hero-tagline { letter-spacing: .04em; }
+      .hero-buttons { gap: 9px; }
+      .btn { min-width: 0; padding: 11px 13px; font-size: .66rem; }
+      section.content-section { padding: 76px 18px; }
+      .about-layout { gap: 24px; }
+      .naming-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .naming-card { padding: 16px 13px; }
+      .team-grid { grid-template-columns: 1fr; }
+      .person-card { min-height: 175px; padding: 18px; }
+      .person-role { margin-top: 18px; }
+      .link-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .link-card { min-height: 165px; padding: 16px; overflow-wrap: anywhere; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-card { gap: 12px; padding: 18px; }
+      .team-switch { gap: 8px; }
+      .team-switch .btn { flex: 1; min-width: 0; }
+      footer { align-items: flex-start; flex-direction: column; padding: 22px 18px; }
+    }
+    @media (max-width: 380px) {
+      .nav-links { gap: 7px 10px; }
+      .nav-links a { font-size: .58rem; }
+      .hero-buttons .btn { flex: 1 1 42%; }
+      .link-grid { grid-template-columns: 1fr; }
+      .naming-card { padding: 14px 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Navigasi utama">
+    <a class="brand-mini" href="#home">NVT’S WEBSPACE</a>
+    <div class="nav-links">
+      <a href="#about">About</a><a href="#team">Team</a><a href="#pages">Our Page</a><a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="eyebrow">est.2026</div>
+        <h1>NOCTAVENTURE</h1>
+        <p class="hero-tagline">Born to Climb Beyond Limits</p>
+        <div class="hero-buttons">
+          <a class="btn" href="#about">About Us</a>
+          <a class="btn" href="#team">Our Team</a>
+          <a class="btn" href="#pages">Our Page</a>
+          <a class="btn" href="#contact">Contact</a>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#about">Explore below<span></span></a>
+    </section>
+
+    <section class="content-section" id="about">
+      <div class="section-heading">
+        <div class="eyebrow">The story behind us</div>
+        <h2>About Us</h2>
+        <p class="section-subtitle">NOCTAVENTURE</p>
+      </div>
+      <div class="about-layout">
+        <div class="about-copy">
+          <p><strong>NOCTAVENTURE</strong> merupakan <em>group chat trainee</em> bertemakan petualangan dan penjelajahan. Didirikan pada tanggal <strong>25 Mei 2026</strong> dengan <strong>Wildcrest</strong> sebagai marga.</p>
+          <p>Nama kami membawa semangat untuk menjelajahi hal-hal yang belum dikenal, melangkah bersama dalam ketidakpastian, dan terus bertumbuh melewati batas diri. Setiap perjalanan punya cerita; setiap anggota punya tempat di dalamnya.</p>
+          <div class="naming-grid">
+            <article class="naming-card"><h3>Compass Unit</h3><p>Manajemen aktif</p></article>
+            <article class="naming-card"><h3>Route Assist</h3><p>Manajemen aktif dari senior</p></article>
+            <article class="naming-card"><h3>Trekkers</h3><p>Senior aktif</p></article>
+            <article class="naming-card"><h3>Pathfinder</h3><p>Trainee aktif</p></article>
+          </div>
+        </div>
+        <aside class="info-panel">
+          <h3 class="panel-title">PROFIL NOCTAVENTURE</h3>
+          <ul class="profile-list">
+            <li><b>Nama — Noctaventure</b><span>Melambangkan petualangan yang gelap dan misterius, namun penuh keberanian.</span></li>
+            <li><b>Marga — Wildcrest</b><span>Melambangkan jiwa liar yang bebas, namun tetap mengejar puncak tertinggi.</span></li>
+            <li><b>Slogan — Born to Climb Beyond Limits</b><span>Bermakna terlahir untuk mendaki, berkembang, dan melampaui batas.</span></li>
+            <li><b>Didirikan — 25 Mei 2026</b><span>Awal perjalanan menuju cerita-cerita baru.</span></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="content-section" id="team">
+      <div class="section-heading">
+        <div class="eyebrow">The people on the trail</div>
+        <h2>Our Team</h2>
+        <p class="section-subtitle">Different roles, one direction.</p>
+      </div>
+      <div class="team-switch" role="group" aria-label="Pilih tim">
+        <button class="btn active" id="compassBtn" type="button" aria-pressed="true" onclick="showTeam('compass')">Compass Unit</button>
+        <button class="btn" id="routeBtn" type="button" aria-pressed="false" onclick="showTeam('route')">Route Assist</button>
+        <span class="team-count" id="teamCount">06 members</span>
+      </div>
+      <p class="team-intro" id="teamIntro">Compass Unit · Active Management</p>
+      <div class="team-grid" id="teamGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="content-section" id="pages">
+      <div class="section-heading">
+        <div class="eyebrow">Stay connected</div>
+        <h2>Our Page</h2>
+        <p class="section-subtitle">Choose your next destination.</p>
+      </div>
+      <div class="link-grid">
+        <a class="link-card" href="https://chat.whatsapp.com/ClZhwwtsr4sC8jxHbN0IF1?s=cl&p=a&mlu=4&ilr=4" target="_blank" rel="noopener noreferrer"><span class="link-icon" aria-hidden="true">↗</span><div><h3>Official Promotion Stall</h3><p>Visit our promotion space</p></div><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="link-card" href="https://whatsapp.com/channel/0029VbCn03CElagxpvoF8k0b" target="_blank" rel="noopener noreferrer"><span class="link-icon" aria-hidden="true">⌁</span><div><h3>Information Center</h3><p>Updates and information</p></div><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="link-card" href="https://drive.google.com/drive/folders/16iInd9TE0N22Qv95v9r0i9Ur65IStAjy" target="_blank" rel="noopener noreferrer"><span class="link-icon" aria-hidden="true">▤</span><div><h3>Archive</h3><p>Our collected memories</p></div><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="link-card" href="https://chat.whatsapp.com/FTiA8neWitX94SxAzb6i0r?s=cl&p=a&mlu=4&ilr=4" target="_blank" rel="noopener noreferrer"><span class="link-icon" aria-hidden="true">⌖</span><div><h3>Initiation Space</h3><p>Step into the journey</p></div><span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="content-section" id="contact">
+      <div class="section-heading">
+        <div class="eyebrow">Every journey starts with a hello</div>
+        <h2>Contact</h2>
+        <p class="section-subtitle">Reach out to Noctaventure.</p>
+      </div>
+      <div class="contact-grid">
+        <a class="contact-card" href="https://whatsapp.com/channel/0029Vb8rL0KLo4hojiJoDU0E" target="_blank" rel="noopener noreferrer"><span class="link-icon" aria-hidden="true">✉</span><div><h3>Contact Registration</h3><p>Registration contact and announcements</p></div><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="contact-card" href="https://ngl.link/noctaventure1" target="_blank" rel="noopener noreferrer"><span class="link-icon" aria-hidden="true">✎</span><div><h3>Feedback Box</h3><p>Leave us a message or feedback</p></div><span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026, <span class="footer-brand">NOCTAVENTURE.</span> All Right Reserved.</span>
+    <span>Compass Unit × Route Assist</span>
+    <a class="back-top" href="#home">Back to top ↑</a>
+  </footer>
+
+  <script>
+    // EDIT DATA TIM DI SINI: ubah jabatan atau nama sesuai kebutuhan.
+    const teams = {
+      compass: [
+        { role: 'Summit Chief', name: 'Jonathan Wildcrest', photo: 'https://drive.google.com/thumbnail?id=1ZmR3gJfFePBQYVrYcJrm2W_t7lZ8QbGu&sz=w1000' },
+        { role: 'Route Captain', name: 'Juan Wildcrest', photo:'https://drive.google.com/thumbnail?id=1CXf6gh75y1nwoqVqVYNCcbyUhTYwRVO6&sz=w1000' },
+        { role: 'Trail Scout', name: 'Jonas Wildcrest', photo:'https://drive.google.com/thumbnail?id=18JYnZMerRHnF7xmYWAwLjimNiv6Sc6id&sz=w1000' },
+        { role: 'Cliff Guard', name: 'Caraka Wildcrest', photo:'https://drive.google.com/thumbnail?id=1Ll1q43hncjjcJoEov6KGhrfvtfbysTPH&sz=w1000' },
+        { role: 'Cliff Guard', name: 'Deryan Wildcrest', photo:'https://drive.google.com/thumbnail?id=1w6rhh0XbYBbHPRu4O9Nb-OOZiCaTalbG&sz=w1000' },
+        { role: 'Cliff Guard', name: 'Max Wildcrest', photo:'https://drive.google.com/thumbnail?id=1bOTJdakN3RSjEXzYR6UuoEMqmfU2oVTE&sz=w1000' }
+      ],
+      route: [
+        { role: 'Camp Keeper', name: 'Amanda Wildcrest', photo:'https://drive.google.com/thumbnail?id=1VgniaTHDIekE52SKi9kX6zd-8r3_y1dh&sz=w1000' },
+        { role: 'Camp Keeper', name: 'Micatea Wildcrest', photo:'https://drive.google.com/thumbnail?id=1GgPvcFSWr3VJERN2PaWfe_V9M9Y8jA3E&sz=w1000' },
+        { role: 'Camp Keeper', name: 'Senya Wildcrest', photo:'https://drive.google.com/thumbnail?id=1cfxeY9TJG71yTmSbV07NFKFEnrw9Op1Q&sz=w1000' },
+        { role: 'Gate Keeper', name: 'Drigalz Wildcrest', photo:'https://drive.google.com/thumbnail?id=1GLKuK4Qf4Qfwuy1-MatIou58yCq36ndE&sz=w1000' },
+        { role: 'Gate Keeper', name: 'Radinata Wildcrest', photo:'https://drive.google.com/thumbnail?id=15Mr90tkjxzodDTRZ08BfXXZ1Z5Tm3lfl&sz=w1000' },
+        { role: 'Log Achivist', name: 'Cherryna Wildcrest', photo:'https://drive.google.com/thumbnail?id=1TqaHIn6sC00ScGeQVioyCt6jAR6vxvUy&sz=w1000' },
+        { role: 'Log Achivist', name: 'Galmera Wildcrest', photo:'https://drive.google.com/thumbnail?id=1dOunTv1YTRwh2-A6NkjeZFs96ckguPjg&sz=w1000' },
+        { role: 'Vista Crafter', name: 'Maniska Wildcrest', photo:'https://drive.google.com/thumbnail?id=11azsQUDs5iTGz0Tm2AhRF_AnIYZb3dnt&sz=w1000' },
+        { role: 'Vista Crafter', name: 'Revan Wildcrest', photo:'https://drive.google.com/thumbnail?id=1M-Yre4SisxH_SU8B_gTD9NlUWKfn3FSr&sz=w1000' }
+      ]
+    };
+
+    function showTeam(teamName) {
+      const isCompass = teamName === 'compass';
+      const members = teams[teamName];
+      const grid = document.getElementById('teamGrid');
+      const compassBtn = document.getElementById('compassBtn');
+      const routeBtn = document.getElementById('routeBtn');
+
+      compassBtn.classList.toggle('active', isCompass);
+      routeBtn.classList.toggle('active', !isCompass);
+      compassBtn.setAttribute('aria-pressed', String(isCompass));
+      routeBtn.setAttribute('aria-pressed', String(!isCompass));
+      document.getElementById('teamCount').textContent = String(members.length).padStart(2, '0') + ' members';
+      document.getElementById('teamIntro').textContent = isCompass
+        ? 'Compass Unit · Active Management'
+        : 'Route Assist · Senior Active Management';
+
+      grid.innerHTML = members.map((person, index) => `
+        <article class="person-card">
+          ${person.photo ? `<img class="person-photo" src="${person.photo}" alt="Photo of ${person.name}" loading="lazy" onerror="this.hidden=true">` : ''}
+          <span class="person-number">FIELD MEMBER / ${String(index + 1).padStart(2, '0')}</span>
+          <p class="person-role">${person.role}</p>
+          <h3 class="person-name">${person.name}</h3>
+        </article>
+      `).join('');
+    }
+
+    // Tim Compass Unit ditampilkan saat halaman pertama kali dibuka.
+    showTeam('compass');
+  </script>
+</body>
+</html>
